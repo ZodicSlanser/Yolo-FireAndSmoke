@@ -38,10 +38,11 @@ def _roboflow(src: dict, dest: Path) -> None:
     if not api_key:
         raise RuntimeError("ROBOFLOW_API_KEY not set in environment")
     from roboflow import Roboflow  # type: ignore
-    print(f"[roboflow] downloading {src['workspace']}/{src['project']} v{src['version']}")
+    fmt = src.get("format", "yolov11")
+    print(f"[roboflow] downloading {src['workspace']}/{src['project']} v{src['version']} ({fmt})")
     rf = Roboflow(api_key=api_key)
     project = rf.workspace(src["workspace"]).project(src["project"])
-    project.version(int(src["version"])).download("yolov8", location=str(dest))
+    project.version(int(src["version"])).download(fmt, location=str(dest))
 
 
 def _huggingface(src: dict, dest: Path) -> None:

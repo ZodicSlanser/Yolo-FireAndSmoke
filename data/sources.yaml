@@ -8,10 +8,18 @@
 # weight controls train-set downsampling: 1.0 keeps all, 0.5 keeps half. Val and
 # test splits are never downsampled — only train.
 #
+# format (roboflow only) defaults to "yolov11". Roboflow's YOLO formats are
+# structurally identical (same data.yaml + class cx cy w h labels), so yolov5/7/8/9/11
+# are interchangeable in practice — but we set yolov11 to match what we train with.
+#
 # Auth requirements:
 #   roboflow      -> ROBOFLOW_API_KEY env var
 #   kaggle        -> ~/.kaggle/kaggle.json
 #   huggingface   -> `huggingface-cli login` (only needed for gated repos)
+#
+# IMPORTANT: Roboflow projects re-version frequently. Before running, open each
+# project URL below in a browser, find the latest version with YOLOv11 format
+# available, and update the `version:` field. v1 may not exist anymore.
 
 sources:
   - name: dfire
@@ -21,31 +29,48 @@ sources:
     class_map: { 0: fire, 1: smoke }
     weight: 1.0
 
+  # https://universe.roboflow.com/fire-and-smoke-detection-yolo/fire-and-smoke-detection-o4uhv
   - name: rf_primary
     type: roboflow
     workspace: fire-and-smoke-detection-yolo
     project: fire-and-smoke-detection-o4uhv
-    version: 1
+    version: 1                          # VERIFY on project page; bump to current
+    format: yolov11
     layout: yolo
     class_map: { 0: fire, 1: smoke }
     weight: 1.0
 
+  # https://universe.roboflow.com/-jwzpw/continuous_fire
   - name: rf_continuous_fire
     type: roboflow
-    workspace: custom-thxhn
+    workspace: "-jwzpw"                 # quoted because of leading dash
     project: continuous_fire
-    version: 6
+    version: 1                          # VERIFY
+    format: yolov11
     layout: yolo
     class_map: { 0: fire }
     weight: 1.0
 
-  - name: rf_smoke_detection
+  # https://universe.roboflow.com/karim-pxt0c/continuous_fire-smw6b
+  - name: rf_continuous_fire_karim
     type: roboflow
-    workspace: smokedetection
-    project: smoke-detection-fjyz9
-    version: 1
+    workspace: karim-pxt0c
+    project: continuous_fire-smw6b
+    version: 1                          # VERIFY
+    format: yolov11
     layout: yolo
-    class_map: { 0: smoke }
+    class_map: { 0: fire }
+    weight: 1.0
+
+  # https://universe.roboflow.com/fire-and-smoke-datasheet-qumum/fire-and-smoke-lwvsp
+  - name: rf_fire_smoke_lwvsp
+    type: roboflow
+    workspace: fire-and-smoke-datasheet-qumum
+    project: fire-and-smoke-lwvsp
+    version: 1                          # VERIFY
+    format: yolov11
+    layout: yolo
+    class_map: { 0: fire, 1: smoke }    # VERIFY index order on project page
     weight: 1.0
 
   - name: kaggle_firesmoke
