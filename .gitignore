@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Ultralytics / training artifacts
+runs/
+yolo*.pt
+*.engine
+*.onnx
+bus.jpg
+
+# Dataset and demo artifacts (gitignored — pulled per machine)
+data/raw/
+data/staging/
+data/merged/
+demo-clips/*
+!demo-clips/README.md
+models/*
+!models/README.md
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.serena/
+.claude/

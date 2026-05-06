@@ -1,0 +1,6 @@
+# Run on the 4090 laptop AFTER installing requirements.txt:
+#   pip install -r requirements-cuda.txt --index-url https://download.pytorch.org/whl/cu121
+# This upgrades torch to the CUDA build and replaces onnxruntime with the GPU variant.
+torch==2.4.1+cu121
+torchvision==0.19.1+cu121
+onnxruntime-gpu==1.19.2

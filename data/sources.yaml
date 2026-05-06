@@ -1,0 +1,63 @@
+# Declarative list of fire/smoke datasets. The downloader and prepare scripts
+# read this file. Adding a new dataset = adding an entry here, no code changes.
+#
+# class_map keys are the SOURCE's class indices in its own data.yaml. The values
+# are the unified class names. The unified output is always [fire=0, smoke=1].
+# Sources that lack one of the two classes (e.g. fire-only) are merged in cleanly.
+#
+# weight controls train-set downsampling: 1.0 keeps all, 0.5 keeps half. Val and
+# test splits are never downsampled — only train.
+#
+# Auth requirements:
+#   roboflow      -> ROBOFLOW_API_KEY env var
+#   kaggle        -> ~/.kaggle/kaggle.json
+#   huggingface   -> `huggingface-cli login` (only needed for gated repos)
+
+sources:
+  - name: dfire
+    type: git
+    url: https://github.com/gaiasd/DFireDataset.git
+    layout: yolo
+    class_map: { 0: fire, 1: smoke }
+    weight: 1.0
+
+  - name: rf_primary
+    type: roboflow
+    workspace: fire-and-smoke-detection-yolo
+    project: fire-and-smoke-detection-o4uhv
+    version: 1
+    layout: yolo
+    class_map: { 0: fire, 1: smoke }
+    weight: 1.0
+
+  - name: rf_continuous_fire
+    type: roboflow
+    workspace: custom-thxhn
+    project: continuous_fire
+    version: 6
+    layout: yolo
+    class_map: { 0: fire }
+    weight: 1.0
+
+  - name: rf_smoke_detection
+    type: roboflow
+    workspace: smokedetection
+    project: smoke-detection-fjyz9
+    version: 1
+    layout: yolo
+    class_map: { 0: smoke }
+    weight: 1.0
+
+  - name: kaggle_firesmoke
+    type: kaggle
+    handle: dataclusterlabs/fire-and-smoke-dataset
+    layout: yolo
+    class_map: { 0: fire, 1: smoke }
+    weight: 1.0
+
+  - name: industrial_negatives
+    type: local
+    path: data/raw/industrial_negatives
+    layout: yolo
+    class_map: {}
+    weight: 1.0
