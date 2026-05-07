@@ -3,6 +3,14 @@ import time
 import uuid
 from collections import deque
 from datetime import datetime, timezone
+from pathlib import Path
+
+# Allow running both as `python -m service.inference_service` (from project root)
+# and `python service/inference_service.py` (direct invocation). The direct case
+# only puts service/ on sys.path; we need the project root.
+_ROOT = Path(__file__).resolve().parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
 
 import cv2
 import requests
