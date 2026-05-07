@@ -73,6 +73,95 @@ sources:
     class_map: { 0: fire, 1: smoke }    # VERIFY index order on project page
     weight: 1.0
 
+  # https://universe.roboflow.com/zaineb-ghazouani/fire-smoke-detection3/dataset/4
+  - name: rf_zaineb_firesmoke
+    type: roboflow
+    workspace: zaineb-ghazouani
+    project: fire-smoke-detection3
+    version: 4
+    format: yolov11
+    layout: yolo
+    class_map: { 0: fire, 1: smoke }    # VERIFY index order on project page
+    weight: 1.0
+
+  # https://universe.roboflow.com/testing-gzck9/fire_detection-eq8b9/dataset/2
+  - name: rf_fire_detection_eq8b9
+    type: roboflow
+    workspace: testing-gzck9
+    project: fire_detection-eq8b9
+    version: 2
+    format: yolov11
+    layout: yolo
+    class_map: { 0: fire }              # VERIFY — name suggests fire only
+    weight: 1.0
+
+  # https://universe.roboflow.com/eco-group/fire-smoke-yvnrc/dataset/6
+  - name: rf_eco_firesmoke
+    type: roboflow
+    workspace: eco-group
+    project: fire-smoke-yvnrc
+    version: 6
+    format: yolov11
+    layout: yolo
+    class_map: { 0: fire, 1: smoke }    # VERIFY
+    weight: 1.0
+
+  # https://universe.roboflow.com/gadjiiavov-n4n8k/fire-fhsxx/dataset/2
+  - name: rf_gadji_fire
+    type: roboflow
+    workspace: gadjiiavov-n4n8k
+    project: fire-fhsxx
+    version: 2
+    format: yolov11
+    layout: yolo
+    class_map: { 0: fire }              # VERIFY — name suggests fire only
+    weight: 1.0
+
+  # https://universe.roboflow.com/mytest-blult/fire-smoke-detection-eozii/dataset/1
+  - name: rf_mytest_firesmoke
+    type: roboflow
+    workspace: mytest-blult
+    project: fire-smoke-detection-eozii
+    version: 1
+    format: yolov11
+    layout: yolo
+    class_map: { 0: fire, 1: smoke }    # VERIFY
+    weight: 1.0
+
+  # https://universe.roboflow.com/computer-vision-mkpxu/fire-n-smoke-detection-wuaqm/dataset/1
+  - name: rf_cv_firensmoke
+    type: roboflow
+    workspace: computer-vision-mkpxu
+    project: fire-n-smoke-detection-wuaqm
+    version: 1
+    format: yolov11
+    layout: yolo
+    class_map: { 0: fire, 1: smoke }    # VERIFY
+    weight: 1.0
+
+  # https://universe.roboflow.com/2709-qrfck/fire-q29fp/dataset/1
+  - name: rf_2709_fire
+    type: roboflow
+    workspace: 2709-qrfck
+    project: fire-q29fp
+    version: 1
+    format: yolov11
+    layout: yolo
+    class_map: { 0: fire }              # VERIFY — name suggests fire only
+    weight: 1.0
+
+  # https://universe.roboflow.com/firesmokehuman/fire-and-smoke-industrial/dataset/13
+  # Particularly relevant — explicitly an industrial fire/smoke dataset.
+  - name: rf_firesmoke_industrial
+    type: roboflow
+    workspace: firesmokehuman
+    project: fire-and-smoke-industrial
+    version: 13
+    format: yolov11
+    layout: yolo
+    class_map: { 0: fire, 1: smoke }    # VERIFY
+    weight: 1.0
+
   - name: kaggle_firesmoke
     type: kaggle
     handle: dataclusterlabs/fire-and-smoke-dataset

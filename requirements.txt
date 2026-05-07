@@ -1,5 +1,5 @@
 # Core
-ultralytics==8.3.0
+ultralytics       # unpinned: YOLO26+ requires recent releases; pin breaks on model swaps
 torch==2.4.1
 torchvision==0.19.1
 opencv-python==4.10.0.84
